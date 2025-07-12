@@ -1,0 +1,48 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="AWS AMI Pipeline" id="Y5KtZJbJekJdMD1C0dDR">
+    <mxGraphModel dx="827" dy="496" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- GitHub -->
+        <mxCell id="2" value="GitHub" style="shape=image;image=https://cdn.jsdelivr.net/gh/Azure/azure-icons/DevOps/github.svg;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="60" height="60" as="geometry"/>
+        </mxCell>
+        <!-- AWS CodePipeline -->
+        <mxCell id="3" value="AWS CodePipeline" style="shape=process;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="40" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <!-- AWS CodeBuild -->
+        <mxCell id="4" value="AWS CodeBuild" style="shape=process;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="40" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <!-- AWS Image Builder -->
+        <mxCell id="5" value="AWS Image Builder" style="shape=process;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="40" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <!-- AMI -->
+        <mxCell id="6" value="AMI" style="shape=datastore;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="40" width="60" height="60" as="geometry"/>
+        </mxCell>
+        <!-- AWS Inspector -->
+        <mxCell id="7" value="AWS Inspector" style="shape=process;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="120" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <!-- EventBridge -->
+        <mxCell id="8" value="AWS EventBridge" style="shape=process;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="160" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Step Functions -->
+        <mxCell id="9" value="AWS Step Functions
+Email notification
+Approval" style="shape=process;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="160" width="160" height="80" as="geometry"/>
+        </mxCell>
+        <!-- Service Catalog -->
+        <mxCell id="10" value="AWS Service Catalog" style="shape=process;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="160" width="160" height="60" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

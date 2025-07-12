@@ -1,0 +1,157 @@
+<mxfile host="app.diagrams.net" modified="2025-07-12T13:00:00.000Z" agent="Mozilla/5.0" etag="YOUR_ETAG_HERE" version="24.6.4" type="browser">
+  <diagram id="diagram_id_here" name="Page-1">
+    <mxGraphModel dx="1434" dy="880" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="user" value="ユーザー" style="shape=mxgraph.aws3.user;" vertex="1" parent="1">
+          <mxGeometry x="50" y="300" width="80" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="github" value="GitHub" style="shape=mxgraph.aws3.aws_cloud_alt;fillColor=#FFFFFF;strokeColor=#181818;" vertex="1" parent="1">
+          <mxGeometry x="180" y="300" width="80" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="user_to_github" value="Push" style="endArrow=classic;html=1;fontFamily=Helvetica;fontSize=12;" edge="1" parent="1" source="user" target="github">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="130" y="340" as="sourcePoint" />
+            <mxPoint x="180" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="codepipeline_group" value="CodePipeline関連処理" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;fillColor=#D5E8D4;strokeColor=#82B366;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="100" width="650" height="400" as="geometry">
+            <mxRectangle x="350" y="100" width="650" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="codepipeline" value="AWS CodePipeline" style="shape=mxgraph.aws3.code_pipeline;whiteSpace=wrap;html=1;" vertex="1" parent="codepipeline_group">
+          <mxGeometry x="10" y="40" width="100" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="github_to_codepipeline" value="トリガー" style="endArrow=classic;html=1;fontFamily=Helvetica;fontSize=12;" edge="1" parent="1" source="github" target="codepipeline">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="340" as="sourcePoint" />
+            <mxPoint x="350" y="340" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="300" y="340" />
+              <mxPoint x="300" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="codepipeline_source" value="Source取得" style="shape=mxgraph.aws3.folder;whiteSpace=wrap;html=1;" vertex="1" parent="codepipeline_group">
+          <mxGeometry x="150" y="40" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="codepipeline_to_source" value="" style="endArrow=classic;html=1;" edge="1" parent="codepipeline_group" source="codepipeline" target="codepipeline_source">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="90" as="sourcePoint" />
+            <mxPoint x="150" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="codebuild" value="AWS CodeBuild" style="shape=mxgraph.aws3.code_build;whiteSpace=wrap;html=1;" vertex="1" parent="codepipeline_group">
+          <mxGeometry x="290" y="40" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="source_to_codebuild" value="CDK実行" style="endArrow=classic;html=1;" edge="1" parent="codepipeline_group" source="codepipeline_source" target="codebuild">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="250" y="90" as="sourcePoint" />
+            <mxPoint x="290" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="image_builder" value="AWS Image Builder" style="shape=mxgraph.aws3.image_builder;whiteSpace=wrap;html=1;" vertex="1" parent="codepipeline_group">
+          <mxGeometry x="430" y="40" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="codebuild_to_imagebuilder" value="パイプライン作成" style="endArrow=classic;html=1;" edge="1" parent="codepipeline_group" source="codebuild" target="image_builder">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="90" as="sourcePoint" />
+            <mxPoint x="430" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="codedeploy" value="AWS CodeDeploy" style="shape=mxgraph.aws3.code_deploy;whiteSpace=wrap;html=1;" vertex="1" parent="codepipeline_group">
+          <mxGeometry x="570" y="40" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="imagebuilder_to_codedeploy" value="AMI作成" style="endArrow=classic;html=1;" edge="1" parent="codepipeline_group" source="image_builder" target="codedeploy">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="530" y="90" as="sourcePoint" />
+            <mxPoint x="570" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="inspector" value="AWS Inspector" style="shape=mxgraph.aws3.inspector;whiteSpace=wrap;html=1;" vertex="1" parent="codepipeline_group">
+          <mxGeometry x="570" y="200" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="codedeploy_to_inspector" value="AMI検査" style="endArrow=classic;html=1;" edge="1" parent="codepipeline_group" source="codedeploy" target="inspector">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="620" y="140" as="sourcePoint" />
+            <mxPoint x="620" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="eventbridge_group" value="EventBridge関連処理" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;fillColor=#DAE8FC;strokeColor=#6C8EBF;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="550" width="650" height="200" as="geometry">
+            <mxRectangle x="350" y="550" width="650" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="eventbridge" value="AWS EventBridge" style="shape=mxgraph.aws3.event_bridge;whiteSpace=wrap;html=1;" vertex="1" parent="eventbridge_group">
+          <mxGeometry x="10" y="40" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="codedeploy_to_eventbridge" value="AMI作成完了検知" style="endArrow=classic;html=1;fontFamily=Helvetica;fontSize=12;" edge="1" parent="1" source="codedeploy" target="eventbridge">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="620" y="450" as="sourcePoint" />
+            <mxPoint x="620" y="550" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="620" y="520" />
+              <mxPoint x="60" y="520" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="step_functions" value="AWS Step Functions" style="shape=mxgraph.aws3.step_functions;whiteSpace=wrap;html=1;" vertex="1" parent="eventbridge_group">
+          <mxGeometry x="150" y="40" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="eventbridge_to_stepfunctions" value="メール通知" style="endArrow=classic;html=1;" edge="1" parent="eventbridge_group" source="eventbridge" target="step_functions">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="90" as="sourcePoint" />
+            <mxPoint x="150" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="admin_email" value="管理者メール通知" style="shape=mxgraph.aws3.email;whiteSpace=wrap;html=1;" vertex="1" parent="eventbridge_group">
+          <mxGeometry x="290" y="40" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="stepfunctions_to_email" value="" style="endArrow=classic;html=1;" edge="1" parent="eventbridge_group" source="step_functions" target="admin_email">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="250" y="90" as="sourcePoint" />
+            <mxPoint x="290" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="approval" value="承認" style="shape=mxgraph.flowchart.decision;whiteSpace=wrap;html=1;" vertex="1" parent="eventbridge_group">
+          <mxGeometry x="430" y="50" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="email_to_approval" value="" style="endArrow=classic;html=1;" edge="1" parent="eventbridge_group" source="admin_email" target="approval">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="90" as="sourcePoint" />
+            <mxPoint x="430" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="service_catalog" value="AWS Service Catalog" style="shape=mxgraph.aws3.service_catalog;whiteSpace=wrap;html=1;" vertex="1" parent="eventbridge_group">
+          <mxGeometry x="570" y="40" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="approval_to_servicecatalog" value="AMI登録" style="endArrow=classic;html=1;" edge="1" parent="eventbridge_group" source="approval" target="service_catalog">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="510" y="90" as="sourcePoint" />
+            <mxPoint x="570" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
